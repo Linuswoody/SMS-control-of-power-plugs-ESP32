@@ -5,7 +5,7 @@
 
 I was interested in a portable box with 2 independently controlled power outlets/wall sockets to be used on my boat. One idea was to be able to turn a heating system on by SMS before I arrived at my boat ...
 
-This code is based on information and code from George Bantique, TechToTinker Youtube channel (https://techtotinker.blogspot.com). Many thanks to George for a this - it gave me a rather quick start into my project!
+This code is based on information and code from George Bantique, TechToTinker Youtube channel (https://techtotinker.blogspot.com). Many thanks to George for this - it gave me a rather quick start into my project!
 
 I have been writing the code for Arduino in VS Code.
 
