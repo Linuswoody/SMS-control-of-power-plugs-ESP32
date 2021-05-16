@@ -9,3 +9,5 @@ The aim of this project is to allow a remote control of 2 (or more) power outlet
 In addition, the 12 V line can be used to control the voltage and send a warning SMS if voltage drops e.g. below 12.7 V indicating that charging of batteries is failing. For this, the box has a 12 V plug that can be either plugged into an independent 12 V system (to be watched and used as power supply for the ESP32/GSM800 etc.) or can be plugged into the inbuilt 12 V power outlet of the remote control box.
 
 Many more items could be thought of to further expand the scope of the box...
+
+Safety warning: all work on parts of the higher voltage system (230 V) can be dangerous and bears a high risk for your (or others) safety and health! I highly recommend to have a professional/expert do this part of the work or at least check your system before it is attached to a power line. In any case, I do not take any responsibility for any damage or health issues if someone is following, copying or rebuilding this project. This is totally at your own risk.
