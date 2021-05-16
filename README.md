@@ -1,5 +1,5 @@
 # SMS-remote-control-of-power-outlets-ESP32
-remote control of 3 relays by SMS using an ESP32 and a GSM800 module; relays are used to turn power outlets (230V) on and off; BME280 to get temperature/humidity to launch e.g. an anti-freeze program with a heater on plug 1
+remote control of 3 relays by SMS using an ESP32 and a GSM800 module; relays are used to turn power outlets (230V) on and off; BME280 to get temperature/humidity to launch e.g. an anti-freeze program with a heater on power outlet 1
 
 I was interested in a portable box with 2 independently controlled power outlets/wall sockets to be used on my boat. One idea was to be able to turn a heating system on by SMS before I arrived at my boat ...
 
