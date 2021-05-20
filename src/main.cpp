@@ -103,10 +103,10 @@ int bufferIndex = 0;            // holds the position of the char in the buffer 
 
 // This variable holds the SMS sender mobile number, 
 // it will be updated when new sms arrived
-char sender_num[15] = {'+', '4', '9', '1', '5', '7', '7', '6', '3', '4', '8', '7', '4', '4'}; // Originally just [14] --> too short
+char sender_num[15] = {'+', '4', '9', '1', '5', '7', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'}; // Originally just [14] --> too short
 // This variable holds the mobile number of the owner, emergency sms will be sent to this
 // when the event is triggered lets say the button press
-char default_num[15] = {'+', '4', '9', '1', '5', '7', '7', '6', '3', '4', '8', '7', '4', '4'}; // Originally just [14] --> too short
+char default_num[15] = {'+', '4', '9', '1', '5', '7', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'}; // Originally just [14] --> too short
 char sender_cmd[7];     // holds the specific command when a new SMS is received
 char message;
 char mobile;
@@ -163,11 +163,11 @@ bool notify_V_on = false;           // Switch for notify loop (by SMS "CMD: NYV 
 bool sentAlarm_V = false;           // used to control of Volt-Alarm has already been sent
 float low_limit_V = 12.8;          // low voltage value to raise alarm on 12V line
 unsigned long alarmMillis_V = 0;    // 
-unsigned long readInterval_V = 20 * 60 * 1000; // in Minuten (20*60*1000 msec = 20 min)
+unsigned long readInterval_V = 20 * 60 * 1000; // in minutes (20*60*1000 msec = 20 min)
 unsigned long alarmTimer_V = 0;         // time of first low voltage event
 
 // used to set GPIO pin high/low by SMS-CMD at the end of "process Command"-loop:
-bool relay1State = true;   //    holds the state of LEDs / Relais 1 - 3
+bool relay1State = true;   //    holds the state of relays 1 - 3
 bool relay2State = true;   //    true:  means OFF
 bool relay3State = true;   //    false: means ON
 
@@ -200,7 +200,7 @@ void initializeGSM() {
   delay(1000);                //1000
   SIM800L.println("AT+CMGF=1");           // Configuration for sending SMS
   delay(1000);                //1000
-  SIM800L.println("AT+CNMI=1,2,0,0,0");   // Configuration for receiving SMS (war: 1,2,0,0,0)
+  SIM800L.println("AT+CNMI=1,2,0,0,0");   // Configuration for receiving SMS
   delay(1000);                //1000
   SIM800L.println("AT&W");                // added afterwards
   Serial.println("AT&W, SIM initialized");        // Save the configuration settings
@@ -280,7 +280,7 @@ void sendSMS(String message, String mobile) {
   Serial.println(message);                        // This is the message to be sent.
   Serial.println((char)26);                       // ASCII code of CTRL+Z to finalized the sending of sms
 #else // actual
-  SIM800L.println("AT+CMGF=1");                    //Sets the GSM Module in Text Mode - war ausgemarket
+  SIM800L.println("AT+CMGF=1");                    //Sets the GSM Module in Text Mode
   delay(1000);
   String initCall = "AT+CMGS=\"";
   initCall += mobile;
@@ -478,7 +478,7 @@ void processCommand() {
     #endif //SMS_ENABLED
   } 
   else if (strcmp(sender_cmd, "GET S") == 0) {    // This command sends the current status of all LEDs 
-    String statusSMS = "";                               // Create the status reply
+    String statusSMS = "";                          // Create the status reply
     statusSMS = "Relais-1 is ";
     if (relay1State) {
       statusSMS += "OFF";
@@ -499,7 +499,7 @@ void processCommand() {
     else if ((strcmp(sender_cmd, "GET A") == 0)) {    // This command sends the current information of all Sensors
                                                       // call function to measure voltage 1  --> volt12_avg
     volt12_avg = get_volt12_avg();                    // mean value from 10 measurements; single values vary +/- 0,15 V
-    //float volt230 = get_volt230_avg();              //call funktion to measure voltage 2  --> volt230_avg
+    //float volt230 = get_volt230_avg();              //call function to measure voltage 2  --> volt230_avg
     //call function  --> temp1, hum1, press1
     sensors_event_t temp_event, pressure_event, humidity_event;
     bme_temp->getEvent(&temp_event);
@@ -973,7 +973,7 @@ void setup(){
   pinMode(RELAY2, OUTPUT);
   pinMode(RELAY3, OUTPUT);
   pinMode(SW_PIN, INPUT_PULLUP);
-  digitalWrite(RELAY1, relay1State);  // set the current states of LEDs
+  digitalWrite(RELAY1, relay1State);  // set the current states of relays
   digitalWrite(RELAY2, relay2State);
   digitalWrite(RELAY3, relay3State);
   memset(bufferData, 0, sizeof(bufferData)); // Initialize the string     
