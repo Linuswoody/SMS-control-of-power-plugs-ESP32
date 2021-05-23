@@ -606,7 +606,7 @@ void intervalControl2() {// control interval for relay 2
   if (interval_on_2 < 1) {          // initial run --> interval settings
     isR2_set = false;             // turn relay 1 ON
     intervalMillis2 = millis();   // start time for first interval
-    if (auto_R2_mode == 1) {          // 20min ON - 23h 40min OFF
+    if (auto_R2_mode == 1) {          // 5se on - 10 sec off       (20min ON - 23h 40min OFF)
       interval_on_2 = 5000; //20 * 60 * 1000;
       interval_off_2 = 10000; //(23 * 60 * 60 * 1000) + (40 * 60 * 1000);
     }
